@@ -1,113 +1,507 @@
-import Image from "next/image";
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/TyrJiTQezQB
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import {
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+  Table,
+} from "@/components/ui/table";
+import { BarChartIcon } from "lucide-react";
+
+export default function Component() {
+  const [todayWorkout, setTodayWorkout] = useState({
+    name: "Chest & Triceps",
+    date: "Monday, June 5",
+    items: [
+      {
+        name: "Bench Press",
+        sets: 3,
+        reps: 10,
+        weight: 185,
+      },
+      {
+        name: "Tricep Extensions",
+        sets: 3,
+        reps: 12,
+        weight: 50,
+      },
+    ],
+  });
+  const [scheduleData, setScheduleData] = useState([
+    {
+      day: "Monday",
+      items: [
+        {
+          name: "Chest & Triceps",
+          duration: 60,
+        },
+        {
+          name: "Abs",
+          duration: 30,
+        },
+      ],
+    },
+    {
+      day: "Tuesday",
+      items: [
+        {
+          name: "Back & Biceps",
+          duration: 60,
+        },
+      ],
+    },
+    {
+      day: "Wednesday",
+      items: [
+        {
+          name: "Legs",
+          duration: 90,
+        },
+      ],
+    },
+  ]);
+  const [maxData, setMaxData] = useState([
+    {
+      name: "Bench Press",
+      max: 225,
+    },
+    {
+      name: "Deadlift",
+      max: 315,
+    },
+    {
+      name: "Squat",
+      max: 275,
+    },
+  ]);
+  const [weightData, setWeightData] = useState([
+    {
+      name: "Bench Press",
+      weight: 185,
+      change: 10,
+      changeDirection: "up",
+    },
+    {
+      name: "Deadlift",
+      weight: 315,
+      change: 20,
+      changeDirection: "up",
+    },
+    {
+      name: "Squat",
+      weight: 275,
+      change: 15,
+      changeDirection: "up",
+    },
+  ]);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-950">
+      <main className="flex-1 overflow-y-auto px-4 py-4">
+        <section className="mb-8">
+          <h2 className="text-lg font-bold mb-4">Todays Workout</h2>
+          <Card>
+            <CardHeader className="p-4">
+              <h3 className="text-md font-semibold">Push Day 1</h3>
+            </CardHeader>
+            <CardContent className="p-0">
+              <Table className="compact">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Workout</TableHead>
+                    <TableHead>Last Lift</TableHead>
+                    <TableHead>1RM</TableHead>
+                    <TableHead>Progress</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-medium">Bench Press</TableCell>
+                    <TableCell>225 lbs</TableCell>
+                    <TableCell>
+                      40 lbs
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full"
+                      >
+                        <BarChartIcon className="h-4 w-4" />
+                        <span className="sr-only">1 Rep Max</span>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">Squats</TableCell>
+                    <TableCell>315 lbs</TableCell>
+                    <TableCell>
+                      45 lbs
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full"
+                      >
+                        <BarChartIcon className="h-4 w-4" />
+                        <span className="sr-only">1 Rep Max</span>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">Deadlifts</TableCell>
+                    <TableCell>405 lbs</TableCell>
+                    <TableCell>
+                      45 lbs
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full"
+                      >
+                        <BarChartIcon className="h-4 w-4" />
+                        <span className="sr-only">1 Rep Max</span>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">Pull-ups</TableCell>
+                    <TableCell>+50 lbs</TableCell>
+                    <TableCell>
+                      45 lbs
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full"
+                      >
+                        <BarChartIcon className="h-4 w-4" />
+                        <span className="sr-only">1 Rep Max</span>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">
+                      Shoulder Press
+                    </TableCell>
+                    <TableCell>135 lbs</TableCell>
+                    <TableCell>
+                      45 lbs
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full"
+                      >
+                        <BarChartIcon className="h-4 w-4" />
+                        <span className="sr-only">1 Rep Max</span>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </section>
+        <section className="mb-8">
+          <h2 className="text-lg font-bold mb-4">Workout Schedule</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {scheduleData.map((schedule, index) => (
+              <Card key={index}>
+                <CardContent className="grid gap-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-md font-semibold">{schedule.day}</h3>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="rounded-full"
+                    >
+                      <PlusIcon className="h-5 w-5" />
+                    </Button>
+                  </div>
+                  <div className="grid gap-2">
+                    {schedule.items.map((item, itemIndex) => (
+                      <div
+                        key={itemIndex}
+                        className="flex items-center justify-between"
+                      >
+                        <span className="font-medium">{item.name}</span>
+                        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                          <ClockIcon className="h-4 w-4" />
+                          <span>{item.duration} min</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+        <section className="mb-8">
+          <h2 className="text-lg font-bold mb-4">1-Rep Max Tracking</h2>
+          <Card>
+            <CardContent className="grid gap-4">
+              {maxData.map((max, index) => (
+                <div key={index} className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <DumbbellIcon className="h-5 w-5" />
+                    <span className="font-medium">{max.name}</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-sm">
+                    <span>1-Rep Max:</span>
+                    <span className="font-medium">{max.max} lbs</span>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </section>
+        <section className="mb-8">
+          <h2 className="text-lg font-bold mb-4">Weight Tracking</h2>
+          <Card>
+            <CardContent className="grid gap-4">
+              {weightData.map((weight, index) => (
+                <div key={index} className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <DumbbellIcon className="h-5 w-5" />
+                    <span className="font-medium">{weight.name}</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-sm">
+                    <span>{weight.weight} lbs</span>
+                    <Separator orientation="vertical" className="h-4" />
+                    <ArrowUp01Icon
+                      className={`h-4 w-4 ${
+                        weight.changeDirection === "up"
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }`}
+                    />
+                    <span>{weight.change} lbs</span>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </section>
+      </main>
+      <footer className="bg-white dark:bg-gray-900 shadow-t px-4 py-3 flex items-center justify-between fixed bottom-0 w-full">
+        <Button variant="ghost" size="icon" className="rounded-full">
+          <HomeIcon className="h-6 w-6" />
+        </Button>
+        <Button variant="ghost" size="icon" className="rounded-full">
+          <CalendarIcon className="h-6 w-6" />
+        </Button>
+        <Button variant="ghost" size="icon" className="rounded-full">
+          <DumbbellIcon className="h-6 w-6" />
+        </Button>
+        <Button variant="ghost" size="icon" className="rounded-full">
+          <UserIcon className="h-6 w-6" />
+        </Button>
+      </footer>
+    </div>
+  );
+}
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+function ArrowUp01Icon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m3 8 4-4 4 4" />
+      <path d="M7 4v16" />
+      <rect x="15" y="4" width="4" height="6" ry="2" />
+      <path d="M17 20v-6h-2" />
+      <path d="M15 20h4" />
+    </svg>
+  );
+}
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+function ArrowUpIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m5 12 7-7 7 7" />
+      <path d="M12 19V5" />
+    </svg>
+  );
+}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+function CalendarIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M8 2v4" />
+      <path d="M16 2v4" />
+      <rect width="18" height="18" x="3" y="4" rx="2" />
+      <path d="M3 10h18" />
+    </svg>
+  );
+}
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+function ClockIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+function DumbbellIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M14.4 14.4 9.6 9.6" />
+      <path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z" />
+      <path d="m21.5 21.5-1.4-1.4" />
+      <path d="M3.9 3.9 2.5 2.5" />
+      <path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z" />
+    </svg>
+  );
+}
+
+function HomeIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  );
+}
+
+function MenuIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="18" y2="18" />
+    </svg>
+  );
+}
+
+function PlusIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12h14" />
+      <path d="M12 5v14" />
+    </svg>
+  );
+}
+
+function UserIcon(props: any) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
   );
 }
