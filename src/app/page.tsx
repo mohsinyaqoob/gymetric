@@ -107,7 +107,7 @@ export default function Component() {
   ]);
   return (
     <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-950">
-      <main className="flex-1 overflow-y-auto px-4 py-4">
+      <main className="flex-1 px-4 py-4">
         <section className="mb-8">
           <h2 className="text-lg font-bold mb-4">Todays Workout</h2>
           <Card>
@@ -217,44 +217,11 @@ export default function Component() {
             </CardContent>
           </Card>
         </section>
-        <section className="mb-8">
-          <h2 className="text-lg font-bold mb-4">Workout Schedule</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {scheduleData.map((schedule, index) => (
-              <Card key={index}>
-                <CardContent className="grid gap-4">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-md font-semibold">{schedule.day}</h3>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="rounded-full"
-                    >
-                      <PlusIcon className="h-5 w-5" />
-                    </Button>
-                  </div>
-                  <div className="grid gap-2">
-                    {schedule.items.map((item, itemIndex) => (
-                      <div
-                        key={itemIndex}
-                        className="flex items-center justify-between"
-                      >
-                        <span className="font-medium">{item.name}</span>
-                        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
-                          <ClockIcon className="h-4 w-4" />
-                          <span>{item.duration} min</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+        
         <section className="mb-8">
           <h2 className="text-lg font-bold mb-4">1-Rep Max Tracking</h2>
           <Card>
+            <CardHeader></CardHeader>
             <CardContent className="grid gap-4">
               {maxData.map((max, index) => (
                 <div key={index} className="flex items-center justify-between">
@@ -299,20 +266,6 @@ export default function Component() {
           </Card>
         </section>
       </main>
-      <footer className="bg-white dark:bg-gray-900 shadow-t px-4 py-3 flex items-center justify-between fixed bottom-0 w-full">
-        <Button variant="ghost" size="icon" className="rounded-full">
-          <HomeIcon className="h-6 w-6" />
-        </Button>
-        <Button variant="ghost" size="icon" className="rounded-full">
-          <CalendarIcon className="h-6 w-6" />
-        </Button>
-        <Button variant="ghost" size="icon" className="rounded-full">
-          <DumbbellIcon className="h-6 w-6" />
-        </Button>
-        <Button variant="ghost" size="icon" className="rounded-full">
-          <UserIcon className="h-6 w-6" />
-        </Button>
-      </footer>
     </div>
   );
 }
